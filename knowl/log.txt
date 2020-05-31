@@ -1,0 +1,3 @@
+1. jQuery.live() function has been removed from the recent releases of jQuery.
+2. Chrome doesn't allow access to local files, thus the load() function is not working properly.
+Once the two problems are resolved---use jQuery.on() instead and view all files on a local server, the code works nicely. 

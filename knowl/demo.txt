@@ -1,0 +1,4 @@
+<h1>This is a demo Knowl</h1>
+<div>from here, you can also open 
+   <a knowl="demo2">yet another</a> Knowl!
+</div>
