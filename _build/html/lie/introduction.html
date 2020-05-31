@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>The Scope of this Document &#8212; Thematic Tutorial 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Counting points of \(y^2=x(x-1)(x-\lambda)\) over \(\mathbf{F}_{p}\) \(p\)-adically" href="PF.html" />
+    <link rel="prev" title="Lie Methods and Related Combinatorics in Sage" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="PF.html" title="Counting points of \(y^2=x(x-1)(x-\lambda)\) over \(\mathbf{F}_{p}\) \(p\)-adically"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Lie Methods and Related Combinatorics in Sage"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Thematic Tutorial 1.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Lie Methods and Related Combinatorics in Sage</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-scope-of-this-document">
+<h1>The Scope of this Document<a class="headerlink" href="#the-scope-of-this-document" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="lie-groups-and-algebras">
+<h2>Lie groups and algebras<a class="headerlink" href="#lie-groups-and-algebras" title="Permalink to this headline">¶</a></h2>
+<p>Sage can be used to do standard computations for Lie groups and Lie
+algebras. The following categories of representations are equivalent</p>
+<ul class="simple">
+<li><p>Complex representations of a compact, semisimple simply connected
+Lie group <cite>G</cite>.</p></li>
+<li><p>Complex representations of its Lie algebra <cite>mathfrak{g}</cite>. This is a
+real Lie algebra, so representations are not required to be complex
+linear maps.</p></li>
+<li><p>Complex representations of its complexified Lie algebra
+<cite>mathfrak{g}_{mathbf{C}} = mathbf{C} otimes mathfrak{g}</cite>. This
+is a complex Lie algebra and representations are required to be
+complex linear transformations.</p></li>
+<li><p>The complex analytic representations of the semisimple
+simply-connected complex analytic group <cite>G_{mathbf{C}}</cite> having
+<cite>mathfrak{g}_{mathbf{C}}</cite> as its Lie algebra.</p></li>
+<li><p>Modules of the universal enveloping algebra
+<cite>U(mathfrak{g}_{mathbf{C}})</cite>.</p></li>
+<li><p>Modules of the quantized enveloping algebra
+<cite>U_q(mathfrak{g}_{mathbf{C}})</cite>.</p></li>
+</ul>
+<p>For example, we could take <cite>G = SU(n)</cite>,
+<cite>mathfrak{g} = mathfrak{sl}(n, mathbf{R})</cite>,
+<cite>mathfrak{g}_{mathbf{C}} = mathfrak{sl}(n, mathbf{C})</cite> and
+<cite>G_{mathbf{C}} = SL(n, mathbf{C})</cite>. Because these categories are the same, their
+representations may be studied simultaneously. The above equivalences
+may be expanded to include reductive groups like <cite>U(n)</cite> and <cite>GL(n)</cite>
+with a bit of care.</p>
+<p>Here are some typical problems that can be solved using Sage</p>
+<ul class="simple">
+<li><p>Decompose a module in any one of these categories into irreducibles.</p></li>
+<li><p>Compute the Frobenius-Schur indicator of an irreducible module.</p></li>
+<li><p>Compute the tensor product of two modules.</p></li>
+<li><p>If <cite>H</cite> is a subgroup of <cite>G</cite>, study the restriction of modules for
+<cite>G</cite> to <cite>H</cite>. The solution to this problem is called a branching rule.</p></li>
+<li><p>Find the multiplicities of the weights of the representation.</p></li>
+</ul>
+<p>In addition to its representations, which we may study as above, a Lie
+group has various related structures. These include</p>
+<ul class="simple">
+<li><p>The Weyl Group <cite>W</cite>.</p></li>
+<li><p>The Weight Lattice.</p></li>
+<li><p>The Root System</p></li>
+<li><p>The Cartan Type.</p></li>
+<li><p>The Dynkin diagram.</p></li>
+<li><p>The extended Dynkin diagram.</p></li>
+</ul>
+<p>Sage contains methods for working with these structures.</p>
+<p>If there is something you need that is not implemented, getting it
+added to Sage will likely be possible. You may write your own
+algorithm for an unimplemented task, and if it is something others
+will be interested in, it is probably possible to get it added to
+Sage.</p>
+</div>
+<div class="section" id="combinatorics">
+<h2>Combinatorics<a class="headerlink" href="#combinatorics" title="Permalink to this headline">¶</a></h2>
+<p>Sage supports a great many related mathematical objects. Some of these
+properly belong to combinatorics. It is beyond the scope of these
+notes to cover all the combinatorics in Sage, but we will try to touch
+on those combinatorial methods which have some connection with Lie
+groups and representation theory. These include</p>
+<ul class="simple">
+<li><p>The affine Weyl group, an infinite group containing <cite>W</cite>.</p></li>
+<li><p>Kashiwara crystals, which are combinatorial analogs of modules in
+the above categories.</p></li>
+<li><p>Coxeter group methods applicable to Weyl groups and the affine Weyl
+group, such as Bruhat order.</p></li>
+<li><p>The Iwahori Hecke algebras, which are deformations of the group
+algebras of <cite>W</cite> and the affine Weyl group.</p></li>
+<li><p>Kazhdan-Lusztig polynomials.</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The Scope of this Document</a><ul>
+<li><a class="reference internal" href="#lie-groups-and-algebras">Lie groups and algebras</a></li>
+<li><a class="reference internal" href="#combinatorics">Combinatorics</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Lie Methods and Related Combinatorics in Sage</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="PF.html"
+                        title="next chapter">Counting points of <span class="math notranslate nohighlight">\(y^2=x(x-1)(x-\lambda)\)</span> over <span class="math notranslate nohighlight">\(\mathbf{F}_{p}\)</span> <span class="math notranslate nohighlight">\(p\)</span>-adically</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/lie/introduction.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="PF.html" title="Counting points of \(y^2=x(x-1)(x-\lambda)\) over \(\mathbf{F}_{p}\) \(p\)-adically"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Lie Methods and Related Combinatorics in Sage"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Thematic Tutorial 1.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Lie Methods and Related Combinatorics in Sage</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Shuai Wang.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.4.
+    </div>
+  </body>
+</html>
