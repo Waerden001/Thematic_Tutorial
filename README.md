@@ -1,6 +1,6 @@
 # Thematic Tutorial
 ## An experimental way of documentation for the future
-This Github repo which takes names from the Sage Theoretic Tutorial documentation and intend to implement the knowl functionality. More precisely, We have the following goals in mind
+This Github repo takes names from the Sage Theoretic Tutorial documentation and intends to implement the knowl functionality. More precisely, We have the following goals in mind
 
 - Modular basic knowledge in a field. It could look like a CS project documentation with library-like collections of classes of objects, concepts, definitions and nuances. For example,    
     - Field: Algebraic Geometry                
