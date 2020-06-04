@@ -4,22 +4,26 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Welcome to the Waerden Thematic Tutorials! &#8212; Thematic Tutorial 1.0.0 documentation</title>
+    <title>Riemann-Roch Theorems &#8212; Thematic Tutorial 1.0.0 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
     
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
+    <script src="_static/knowl.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lie Methods and Related Combinatorics in Sage" href="lie/index.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -27,9 +31,6 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="lie/index.html" title="Lie Methods and Related Combinatorics in Sage"
-             accesskey="N">next</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">Thematic Tutorial 1.0.0 documentation</a> &#187;</li> 
       </ul>
     </div>  
@@ -39,33 +40,286 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="welcome-to-the-waerden-thematic-tutorials">
-<span id="thematic-tutorials"></span><h1>Welcome to the Waerden Thematic Tutorials!<a class="headerlink" href="#welcome-to-the-waerden-thematic-tutorials" title="Permalink to this headline">¶</a></h1>
-<p>Here you will find Waerden demonstrations, quick reference cards, primers, and
-thematic tutorials,</p>
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="section" id="Riemann-Roch-Theorems">
+<h1>Riemann-Roch Theorems<a class="headerlink" href="#Riemann-Roch-Theorems" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="Hirzebruch-Riemann-Roch-theorem">
+<h2>Hirzebruch-Riemann-Roch theorem<a class="headerlink" href="#Hirzebruch-Riemann-Roch-theorem" title="Permalink to this headline">¶</a></h2>
+<p>The Hirzebruch-Riemann-Roch formula states that the Euler characteristic <span class="math notranslate nohighlight">\(\chi(X, E)\)</span> of some coherent sheaf <span class="math notranslate nohighlight">\(E\)</span> on a smooth proper scheme <span class="math notranslate nohighlight">\(X\)</span> over a field is given by the degree in the Chow group of the dimension zero component of the product of the Chern character <span class="math notranslate nohighlight">\(\mathrm{ch}(E)\)</span> of the sheaf and the Todd class <span class="math notranslate nohighlight">\(\mathrm{Td}_{X}\)</span> of the tangent bundle of <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\chi(X, E)=\int_{X}\mathrm{ch}(E)\mathrm{Td}_{X}.\]</div>
+<div class="section" id="Examples">
+<h3>Examples<a class="headerlink" href="#Examples" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>A <em>quickref</em> (or quick reference card) is a one page document with
-the essential examples, and pointers to the main entry points.</p></li>
-<li><p>A <em>primer</em> is a document meant for a user to get started by himself
-on a theme in a matter of minutes.</p></li>
-<li><p>A <em>tutorial</em> is more in-depth and could take as much as an hour or
-more to get through.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\chi(X, \mathcal{O}_{X})\)</span> of an abstract variety.</p></li>
+<li><p>Google</p></li>
 </ul>
-<p>This documentation is licensed under a <a class="reference external" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike
-3.0 License</a>.</p>
-<div class="section" id="introduction-to-waerden-thematic-tutorial">
-<h2>Introduction to Waerden Thematic Tutorial<a class="headerlink" href="#introduction-to-waerden-thematic-tutorial" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Motivation of the  project</p></li>
-<li><p>Introductory Waerden Thematic Tutorial</p></li>
-</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
 </div>
-<div class="section" id="algebra">
-<h2>Algebra<a class="headerlink" href="#algebra" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="lie/index.html#lie"><span class="std std-ref">Lie Methods and Related Combinatorics in Sage</span></a></p></li>
-</ul>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%</span><span class="k">macaulay2</span>
+X = abstractVariety(2,QQ[r,D,d_1,K,c_2,d_2,Degrees=&gt;{0,3:1,2:2}])
+X.TangentBundle = abstractSheaf(X,Rank=&gt;2,ChernClass=&gt;1-K+c_2)
+
+todd(X)
+chi OO_X
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+stdio:5:5:(3): error: no method for adjacent objects:
+--            abstractVariety (of class Symbol)
+--    SPACE   (2, QQ[r, D, d , K, c , d ]) (of class Sequence)
+--                          1      2   2
+stdio:6:1:(3): error: expected a list, hash table, database, or dictionary
+stdio:7:1:(3): error: no method for adjacent objects:
+--            todd (of class Symbol)
+--    SPACE   X (of class Symbol)
+stdio:8:7:(3): error: no method for binary operator _ applied to objects:
+--            OO (of class ScriptedFunctor)
+--      _     X (of class Symbol)
+</pre></div></div>
+</div>
 <div class="toctree-wrapper compound">
+</div>
 </div>
 </div>
 </div>
@@ -78,20 +332,19 @@ more to get through.</p></li>
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Welcome to the Waerden Thematic Tutorials!</a><ul>
-<li><a class="reference internal" href="#introduction-to-waerden-thematic-tutorial">Introduction to Waerden Thematic Tutorial</a></li>
-<li><a class="reference internal" href="#algebra">Algebra</a></li>
+<li><a class="reference internal" href="#">Riemann-Roch Theorems</a><ul>
+<li><a class="reference internal" href="#Hirzebruch-Riemann-Roch-theorem">Hirzebruch-Riemann-Roch theorem</a><ul>
+<li><a class="reference internal" href="#Examples">Examples</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 
-  <h4>Next topic</h4>
-  <p class="topless"><a href="lie/index.html"
-                        title="next chapter">Lie Methods and Related Combinatorics in Sage</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
+      <li><a href="_sources/index.ipynb.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -115,9 +368,6 @@ more to get through.</p></li>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
-        <li class="right" >
-          <a href="lie/index.html" title="Lie Methods and Related Combinatorics in Sage"
-             >next</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">Thematic Tutorial 1.0.0 documentation</a> &#187;</li> 
       </ul>
     </div>

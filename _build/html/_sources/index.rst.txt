@@ -37,6 +37,7 @@ Algebra
 -------
 
 * :ref:`lie`
+* :ref:`knowl`
 
 
 .. A hidden toctree. Sphinx wants everything to be in some toctree.

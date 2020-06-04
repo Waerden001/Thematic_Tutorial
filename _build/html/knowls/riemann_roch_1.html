@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Riemann-Roch Theorems &#8212; Thematic Tutorial 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/knowl.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Thematic Tutorial 1.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="riemann-roch-theorems">
+<h1>Riemann-Roch Theorems<a class="headerlink" href="#riemann-roch-theorems" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hirzebruch-riemann-roch-theorem">
+<h2>Hirzebruch-Riemann-Roch theorem<a class="headerlink" href="#hirzebruch-riemann-roch-theorem" title="Permalink to this headline">¶</a></h2>
+<p>The Hirzebruch-Riemann-Roch formula states that the Euler characteristic
+<span class="math notranslate nohighlight">\(\chi(X, E)\)</span> of some coherent sheaf <span class="math notranslate nohighlight">\(E\)</span> on a smooth proper
+scheme <span class="math notranslate nohighlight">\(X\)</span> over a field is given by the degree in the Chow group
+of the dimension zero component of the product of the Chern character
+<span class="math notranslate nohighlight">\(\mathrm{ch}(E)\)</span> of the sheaf and the Todd class
+<span class="math notranslate nohighlight">\(\mathrm{Td}_{X}\)</span> of the tangent bundle of <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\chi(X, E)=\int_{X}\mathrm{ch}(E)\mathrm{Td}_{X}.\]</div>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\chi(X, \mathcal{O}_{X})\)</span> of an abstract variety.</p></li>
+</ul>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">macaulay2</span>
+X = abstractVariety(2,QQ[r,D,d_1,K,c_2,d_2,Degrees=&gt;{0,3:1,2:2}])
+X.TangentBundle = abstractSheaf(X,Rank=&gt;2,ChernClass=&gt;1-K+c_2)
+
+todd(X)
+chi OO_X
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span>
+
+<span class="n">an</span> <span class="n">abstract</span> <span class="n">variety</span> <span class="n">of</span> <span class="n">dimension</span> <span class="mi">2</span>
+
+<span class="n">a</span> <span class="n">sheaf</span>
+
+<span class="n">an</span> <span class="n">abstract</span> <span class="n">sheaf</span> <span class="n">of</span> <span class="n">rank</span> <span class="mi">2</span> <span class="n">on</span> <span class="n">X</span>
+
+    <span class="mi">1</span>      <span class="mi">1</span> <span class="mi">2</span>    <span class="mi">1</span>
+<span class="mi">1</span> <span class="o">-</span> <span class="o">-</span><span class="n">K</span> <span class="o">+</span> <span class="p">(</span><span class="o">--</span><span class="n">K</span>  <span class="o">+</span> <span class="o">--</span><span class="n">c</span> <span class="p">)</span>
+    <span class="mi">2</span>     <span class="mi">12</span>     <span class="mi">12</span> <span class="mi">2</span>
+
+<span class="n">QQ</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">d</span> <span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">c</span> <span class="p">,</span> <span class="n">d</span> <span class="p">]</span>
+          <span class="mi">1</span>      <span class="mi">2</span>   <span class="mi">2</span>
+
+          <span class="mi">1</span> <span class="mi">2</span>    <span class="mi">1</span>
+<span class="n">integral</span><span class="p">(</span><span class="o">--</span><span class="n">K</span>  <span class="o">+</span> <span class="o">--</span><span class="n">c</span> <span class="p">)</span>
+         <span class="mi">12</span>     <span class="mi">12</span> <span class="mi">2</span>
+
+<span class="n">Expression</span> <span class="n">of</span> <span class="k">class</span> <span class="nc">Adjacent</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Riemann-Roch Theorems</a><ul>
+<li><a class="reference internal" href="#hirzebruch-riemann-roch-theorem">Hirzebruch-Riemann-Roch theorem</a><ul>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/knowl/riemann_roch.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Thematic Tutorial 1.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Shuai Wang.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.4.
+    </div>
+  </body>
+</html>

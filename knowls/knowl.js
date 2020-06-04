@@ -68,7 +68,7 @@ function knowl_click_handler($el) {
    
     // "select" where the output is and get a hold of it 
     var $output = $(output_id);
-    $output.load("knowls/demo1")
+    //$output.load("knowls/demo1")
     //alert($output.text())
     var $knowl = $("#kuid-"+uid);
     $output.addClass("loading");

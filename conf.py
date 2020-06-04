@@ -33,6 +33,7 @@ release = '1.0.0'
 extensions = [
     'nbsphinx',
     'sphinx.ext.mathjax',
+    'jupyter_sphinx.execute',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -55,3 +56,14 @@ html_theme = 'default'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+
+# These paths are either relative to html_static_path
+# or fully qualified paths (eg. https://...)
+html_css_files = [
+    'style.css',
+]
+
+html_js_files = [
+    'knowl.js',
+]
